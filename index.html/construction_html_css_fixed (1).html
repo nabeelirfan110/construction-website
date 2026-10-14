@@ -1,0 +1,892 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <title>
+   Construction - HTML &amp; CSS
+  </title>
+  <style>
+   * {
+     margin:0;
+     padding:0;
+     box-sizing:border-box
+   }
+   html {
+     scroll-behavior:smooth
+   }
+   body {
+     font-family:Arial,Helvetica,sans-serif;
+     color:#222;
+     line-height:1.7
+   }
+   a {
+     text-decoration:none;
+     color:inherit
+   }
+   .container {
+     width:min(1120px,92%);
+     margin:auto
+   }
+   .topbar {
+     position:absolute;
+     top:0;
+     left:0;
+     width:100%;
+     z-index:2;
+     padding:24px 0;
+     color:#fff
+   }
+   .nav {
+     display:flex;
+     align-items:center;
+     justify-content:space-between;
+     gap:25px
+   }
+   .logo {
+     font-size:27px;
+     font-weight:800;
+     letter-spacing:1px;
+     color:#ffb600
+   }
+   .nav-links {
+     display:flex;
+     gap:26px;
+     list-style:none;
+     flex-wrap:wrap
+   }
+   .nav-links a {
+     font-size:13px;
+     text-transform:uppercase;
+     font-weight:bold;
+     transition:.25s
+   }
+   .nav-links a:hover {
+     color:#ffb600
+   }
+   .hero {
+     min-height:680px;
+     display:flex;
+     align-items:center;
+     text-align:center;
+     color:#fff;
+     background:linear-gradient(#0009,#0009),url('https://preview.colorlib.com/theme/construction/img/header-bg.jpg') center/cover no-repeat
+   }
+   .hero-content {
+     width:min(780px,92%);
+     margin:80px auto 0
+   }
+   .hero h4 {
+     font-size:15px;
+     letter-spacing:3px;
+     font-weight:500;
+     margin-bottom:14px
+   }
+   .hero h1 {
+     font-size:clamp(42px,7vw,76px);
+     line-height:1.1;
+     text-transform:uppercase;
+     margin-bottom:22px
+   }
+   .hero p {
+     color:#eee;
+     margin:0 auto 30px;
+     max-width:650px
+   }
+   .btn {
+     display:inline-block;
+     background:#ffb600;
+     color:#111;
+     padding:12px 27px;
+     font-size:12px;
+     font-weight:bold;
+     text-transform:uppercase;
+     letter-spacing:1px;
+     transition:.25s
+   }
+   .btn:hover {
+     background:#fff
+   }
+   .section {
+     padding:90px 0
+   }
+   .section-title {
+     text-align:center;
+     margin:0 auto 55px;
+     max-width:720px
+   }
+   .section-title h2 {
+     font-size:clamp(27px,4vw,38px);
+     line-height:1.25;
+     margin-bottom:12px
+   }
+   .section-title p,.muted {
+     color:#777
+   }
+   .features {
+     display:grid;
+     grid-template-columns:repeat(3,1fr);
+     gap:32px
+   }
+   .feature {
+     text-align:center;
+     padding:20px
+   }
+   .feature .symbol {
+     font-size:40px;
+     color:#ffb600
+   }
+   .feature h3 {
+     font-size:19px;
+     margin:12px 0
+   }
+   .feature p {
+     font-size:14px;
+     color:#777
+   }
+   .light {
+     background:#f8f8f8
+   }
+   .services {
+     display:grid;
+     grid-template-columns:repeat(3,1fr);
+     gap:28px
+   }
+   .service {
+     background:#fff;
+     padding:30px;
+     border:1px solid #eee;
+     transition:.25s
+   }
+   .service:hover {
+     box-shadow:0 12px 35px #00000012;
+     transform:translateY(-4px)
+   }
+   .service h3 {
+     font-size:19px;
+     margin-bottom:12px
+   }
+   .service h3 span {
+     color:#ffb600;
+     margin-right:8px
+   }
+   .service p {
+     font-size:14px;
+     color:#777
+   }
+   .projects {
+     display:grid;
+     grid-template-columns:repeat(4,1fr);
+     gap:18px
+   }
+   .project {
+     min-height:300px;
+     position:relative;
+     background-size:cover;
+     background-position:center;
+     overflow:hidden
+   }
+   .project:after {
+     content:"";
+     position:absolute;
+     inset:0;
+     background:rgba(255,182,0,.82);
+     opacity:0;
+     transition:opacity .35s ease
+   }
+   .project:hover:after {
+     opacity:1
+   }
+   .project {
+     background-size:cover;
+     transition:background-size .35s ease
+   }
+   .project-caption {
+     position:absolute;
+     z-index:1;
+     bottom:0;
+     left:0;
+     padding:22px;
+     color:#fff;
+     transition:transform .35s ease
+   }
+   .project:hover .project-caption {
+     transform:translateY(-8px)
+   }
+   .project-caption h3 {
+     font-size:19px
+   }
+   .project-caption p {
+     font-size:12px;
+     color:#ddd
+   }
+   .stats {
+     background:#171717;
+     color:#fff;
+     padding:55px 0
+   }
+   .stat-grid {
+     display:grid;
+     grid-template-columns:repeat(5,1fr);
+     gap:20px;
+     text-align:center
+   }
+   .stat strong {
+     display:block;
+     color:#ffb600;
+     font-size:34px
+   }
+   .stat span {
+     font-size:13px;
+     color:#ddd
+   }
+   .testimonials {
+     background:linear-gradient(#111b,#111b),url('https://preview.colorlib.com/theme/construction/img/testimonial-bg.jpg') center/cover;
+     color:#fff;
+     text-align:center
+   }
+   .quote {
+     max-width:760px;
+     margin:auto
+   }
+   .quote p {
+     font-size:17px;
+     color:#eee;
+     margin-bottom:20px
+   }
+   .quote h3 {
+     color:#ffb600
+   }
+   .blogs {
+     display:grid;
+     grid-template-columns:repeat(3,1fr);
+     gap:25px
+   }
+   .blog {
+     border:1px solid #eee
+   }
+   .blog img {
+     display:block;
+     width:100%;
+     height:205px;
+     object-fit:cover;
+     transition:filter .3s ease,transform .3s ease
+   }
+   .blog:hover img {
+     filter:sepia(1) saturate(5) hue-rotate(350deg) brightness(1.05);
+     transform:scale(1.03)
+   }
+   .blog {
+     overflow:hidden
+   }
+   .blog-copy {
+     padding:22px
+   }
+   .blog-copy h3 {
+     font-size:19px;
+     margin-bottom:8px
+   }
+   .blog-copy p {
+     font-size:14px;
+     color:#777;
+     margin-bottom:12px
+   }
+   .read {
+     font-size:12px;
+     font-weight:bold;
+     color:#d99700;
+     text-transform:uppercase
+   }
+   .contact-form {
+     display:grid;
+     grid-template-columns:1fr 1fr;
+     gap:18px
+   }
+   .contact-form input,.contact-form textarea {
+     width:100%;
+     padding:15px;
+     border:1px solid #ddd;
+     font:inherit;
+     outline:none
+   }
+   .contact-form input:focus,.contact-form textarea:focus {
+     border-color:#ffb600
+   }
+   .contact-form textarea {
+     min-height:175px;
+     resize:vertical;
+     grid-column:2;
+     grid-row:1 / span 3
+   }
+   .contact-form button {
+     border:0;
+     cursor:pointer;
+     justify-self:start
+   }
+   .footer {
+     background:#101010;
+     color:#fff;
+     padding:60px 0 25px
+   }
+   .footer-grid {
+     display:grid;
+     grid-template-columns:1fr 1fr 1.3fr;
+     gap:35px
+   }
+   .footer h3 {
+     margin-bottom:15px
+   }
+   .footer p {
+     font-size:14px;
+     color:#aaa
+   }
+   .newsletter {
+     display:flex;
+     margin-top:15px
+   }
+   .newsletter input {
+     min-width:0;
+     flex:1;
+     padding:12px;
+     border:0
+   }
+   .newsletter button {
+     border:0;
+     background:#ffb600;
+     padding:0 18px;
+     font-weight:bold
+   }
+   .copyright {
+     text-align:center;
+     border-top:1px solid #333;
+     margin-top:40px;
+     padding-top:20px;
+     color:#999;
+     font-size:13px
+   }
+   @media(max-width:850px) {
+     .nav {
+       align-items:flex-start;
+       flex-direction:column
+     }
+     .nav-links {
+       gap:14px
+     }
+     .hero {
+       min-height:620px
+     }
+     .features,.services {
+       grid-template-columns:repeat(2,1fr)
+     }
+     .projects {
+       grid-template-columns:repeat(2,1fr)
+     }
+     .stat-grid {
+       grid-template-columns:repeat(3,1fr)
+     }
+     .blogs {
+       grid-template-columns:repeat(2,1fr)
+     }
+     .footer-grid {
+       grid-template-columns:repeat(2,1fr)
+     }
+   }
+   @media(max-width:560px) {
+     .topbar {
+       padding:16px 0
+     }
+     .nav-links {
+       gap:10px 14px
+     }
+     .nav-links a {
+       font-size:11px
+     }
+     .hero {
+       min-height:590px
+     }
+     .section {
+       padding:65px 0
+     }
+     .features,.services,.projects,.blogs,.footer-grid {
+       grid-template-columns:1fr
+     }
+     .project {
+       min-height:260px
+     }
+     .stat-grid {
+       grid-template-columns:repeat(2,1fr)
+     }
+     .contact-form {
+       grid-template-columns:1fr
+     }
+     .contact-form textarea {
+       grid-column:1;
+       grid-row:auto
+     }
+     .section-title {
+       margin-bottom:35px
+     }
+   }
+  </style>
+ </head>
+ <body>
+  <header class="topbar">
+   <div class="container nav">
+    <a class="logo" href="#home">
+     CONSTRUCTION
+     <span style="color:#fff">
+      .
+     </span>
+    </a>
+    <nav>
+     <ul class="nav-links">
+      <li>
+       <a href="#home">
+        Home
+       </a>
+      </li>
+      <li>
+       <a href="#feature">
+        Feature
+       </a>
+      </li>
+      <li>
+       <a href="#project">
+        Project
+       </a>
+      </li>
+      <li>
+       <a href="#service">
+        Service
+       </a>
+      </li>
+      <li>
+       <a href="#blog">
+        Blog
+       </a>
+      </li>
+      <li>
+       <a href="#contact">
+        Contact
+       </a>
+      </li>
+     </ul>
+    </nav>
+   </div>
+  </header>
+  <main>
+   <section class="hero" id="home">
+    <div class="hero-content">
+     <h4>
+      DISCOVER THE COLORFUL WORLD
+     </h4>
+     <h1>
+      Build Your Dream
+     </h1>
+     <p>
+      We build strong foundations for your future with reliable construction, thoughtful design, and professional service.
+     </p>
+     <a class="btn" href="#feature">
+      Discover Now
+     </a>
+    </div>
+   </section>
+   <section class="section" id="feature">
+    <div class="container">
+     <div class="features">
+      <article class="feature">
+       <div class="symbol">
+        ▤
+       </div>
+       <h3>
+        Building Drawings
+       </h3>
+       <p>
+        Carefully planned designs and clear drawings to help bring your ideas to life.
+       </p>
+      </article>
+      <article class="feature">
+       <div class="symbol">
+        ⌂
+       </div>
+       <h3>
+        Building Construction
+       </h3>
+       <p>
+        Quality construction solutions designed around your project requirements.
+       </p>
+      </article>
+      <article class="feature">
+       <div class="symbol">
+        ⚒
+       </div>
+       <h3>
+        Repair &amp; Renovation
+       </h3>
+       <p>
+        Reliable repairs and improvements that keep your property in great condition.
+       </p>
+      </article>
+     </div>
+    </div>
+   </section>
+   <section class="section light">
+    <div class="container">
+     <div class="section-title">
+      <h2>
+       Some Features That Make Us Unique
+      </h2>
+      <p>
+       Professional workmanship, reliable support, and a focus on quality.
+      </p>
+     </div>
+     <div class="services">
+      <article class="service">
+       <h3>
+        <span>
+         ✦
+        </span>
+        Basic &amp; Common Repairs
+       </h3>
+       <p>
+        Practical repair services to maintain your building and solve everyday issues.
+       </p>
+      </article>
+      <article class="service">
+       <h3>
+        <span>
+         ✦
+        </span>
+        Renovation Services
+       </h3>
+       <p>
+        Refresh and improve your space with a well-planned renovation approach.
+       </p>
+      </article>
+      <article class="service">
+       <h3>
+        <span>
+         ✦
+        </span>
+        Preventive Maintenance
+       </h3>
+       <p>
+        Regular maintenance helps protect your property and prevent costly problems.
+       </p>
+      </article>
+     </div>
+    </div>
+   </section>
+   <section class="section" id="project">
+    <div class="container">
+     <div class="section-title">
+      <h2>
+       Our Latest Projects
+      </h2>
+      <p>
+       Explore a selection of our construction and renovation work.
+      </p>
+     </div>
+     <div class="projects">
+      <article class="project" style="background-image:url('https://preview.colorlib.com/theme/construction/img/p1.jpg')">
+       <div class="project-caption">
+        <h3>
+         Residential Complex
+        </h3>
+        <p>
+         Modern living spaces
+        </p>
+       </div>
+      </article>
+      <article class="project" style="background-image:url('https://preview.colorlib.com/theme/construction/img/p2.jpg')">
+       <div class="project-caption">
+        <h3>
+         Commercial Building
+        </h3>
+        <p>
+         Built for business
+        </p>
+       </div>
+      </article>
+      <article class="project" style="background-image:url('https://preview.colorlib.com/theme/construction/img/p3.jpg')">
+       <div class="project-caption">
+        <h3>
+         Urban Development
+        </h3>
+        <p>
+         Quality craftsmanship
+        </p>
+       </div>
+      </article>
+      <article class="project" style="background-image:url('https://preview.colorlib.com/theme/construction/img/p4.jpg')">
+       <div class="project-caption">
+        <h3>
+         Modern Architecture
+        </h3>
+        <p>
+         Designed for tomorrow
+        </p>
+       </div>
+      </article>
+     </div>
+    </div>
+   </section>
+   <section class="stats">
+    <div class="container stat-grid">
+     <div class="stat">
+      <strong>
+       2536
+      </strong>
+      <span>
+       Projects Completed
+      </span>
+     </div>
+     <div class="stat">
+      <strong>
+       6784
+      </strong>
+      <span>
+       Happy Clients
+      </span>
+     </div>
+     <div class="stat">
+      <strong>
+       1059
+      </strong>
+      <span>
+       Tasks Completed
+      </span>
+     </div>
+     <div class="stat">
+      <strong>
+       2239
+      </strong>
+      <span>
+       Cups of Coffee
+      </span>
+     </div>
+     <div class="stat">
+      <strong>
+       434
+      </strong>
+      <span>
+       In-house Professionals
+      </span>
+     </div>
+    </div>
+   </section>
+   <section class="section light" id="service">
+    <div class="container">
+     <div class="section-title">
+      <h2>
+       Why We Are The Best
+      </h2>
+      <p>
+       Dependable people and thoughtful service at every stage of your project.
+      </p>
+     </div>
+     <div class="services">
+      <article class="service">
+       <h3>
+        <span>
+         ♙
+        </span>
+        Expert Technicians
+       </h3>
+       <p>
+        Experienced professionals focused on detail and safe workmanship.
+       </p>
+      </article>
+      <article class="service">
+       <h3>
+        <span>
+         &checkmark;
+        </span>
+        Professional Service
+       </h3>
+       <p>
+        Organized project delivery with clear communication throughout.
+       </p>
+      </article>
+      <article class="service">
+       <h3>
+        <span>
+         &phone;
+        </span>
+        Great Support
+       </h3>
+       <p>
+        Friendly support to help answer questions and keep projects moving.
+       </p>
+      </article>
+      <article class="service">
+       <h3>
+        <span>
+         ⚒
+        </span>
+        Technical Skills
+       </h3>
+       <p>
+        Practical skills and modern methods for dependable results.
+       </p>
+      </article>
+      <article class="service">
+       <h3>
+        <span>
+         ◇
+        </span>
+        Quality Focus
+       </h3>
+       <p>
+        We aim for lasting quality in every detail of the work.
+       </p>
+      </article>
+      <article class="service">
+       <h3>
+        <span>
+         ♡
+        </span>
+        Positive Reviews
+       </h3>
+       <p>
+        Building strong relationships through care, consistency, and trust.
+       </p>
+      </article>
+     </div>
+    </div>
+   </section>
+   <section class="section testimonials">
+    <div class="container quote">
+     <p>
+      &ldquo;Great construction is built on trust, planning, and attention to every detail. Our goal is to make each project a lasting success.&rdquo;
+     </p>
+     <h3>
+      Our Commitment
+     </h3>
+     <span>
+      Quality &bull; Reliability &bull; Service
+     </span>
+    </div>
+   </section>
+   <section class="section" id="blog">
+    <div class="container">
+     <div class="section-title">
+      <h2>
+       Latest From Blog
+      </h2>
+      <p>
+       Ideas, updates, and advice from the world of construction.
+      </p>
+     </div>
+     <div class="blogs">
+      <article class="blog">
+       <img alt="Construction project" src="https://preview.colorlib.com/theme/construction/img/b1.jpg">
+       <div class="blog-copy">
+        <h3>
+         We Believe in Quality
+        </h3>
+        <p>
+         Why careful planning and quality materials matter in every building project.
+        </p>
+        <a class="read" href="#contact">
+         Read More &rarr;
+        </a>
+       </div>
+      </article>
+      <article class="blog">
+       <img alt="Building work" src="https://preview.colorlib.com/theme/construction/img/b2.jpg">
+       <div class="blog-copy">
+        <h3>
+         Planning Your Next Project
+        </h3>
+        <p>
+         Useful tips to help make your construction project run smoothly.
+        </p>
+        <a class="read" href="#contact">
+         Read More &rarr;
+        </a>
+       </div>
+      </article>
+      <article class="blog">
+       <img alt="Construction details" src="https://preview.colorlib.com/theme/construction/img/b3.jpg">
+       <div class="blog-copy">
+        <h3>
+         Smart Building Solutions
+        </h3>
+        <p>
+         Explore practical ideas for efficient, durable, and modern spaces.
+        </p>
+        <a class="read" href="#contact">
+         Read More &rarr;
+        </a>
+       </div>
+      </article>
+     </div>
+    </div>
+   </section>
+   <section class="section light" id="contact">
+    <div class="container">
+     <div class="section-title">
+      <h2>
+       Need a Construction Partner?
+      </h2>
+      <p>
+       Send us a message to discuss your next project.
+      </p>
+     </div>
+     <form action="#" class="contact-form" method="post">
+      <input aria-label="Your name" placeholder="Your name" required="" type="text">
+      <input aria-label="Email address" placeholder="Email address" required="" type="email">
+      <input aria-label="Subject" placeholder="Subject" required="" type="text">
+      <textarea aria-label="Your message" placeholder="Your message" required=""></textarea>
+      <button class="btn" type="submit">
+       Send Message &rarr;
+      </button>
+     </form>
+    </div>
+   </section>
+  </main>
+  <footer class="footer">
+   <div class="container">
+    <div class="footer-grid">
+     <div>
+      <h3>
+       About Us
+      </h3>
+      <p>
+       We provide thoughtful construction services with a focus on quality, reliability, and customer satisfaction.
+      </p>
+     </div>
+     <div>
+      <h3>
+       Contact Us
+      </h3>
+      <p>
+       Have a question or a project in mind? Contact our team to discuss your requirements.
+      </p>
+      <p style="margin-top:12px">
+       Phone: +00 123 456 789
+      </p>
+     </div>
+     <div>
+      <h3>
+       Newsletter
+      </h3>
+      <p>
+       Subscribe for occasional updates and construction news.
+      </p>
+      <form action="#" class="newsletter" method="post">
+       <input aria-label="Email address" placeholder="Email address" type="email">
+       <button aria-label="Subscribe" type="submit">
+        ➜
+       </button>
+      </form>
+     </div>
+    </div>
+    <div class="copyright">
+     Copyright &copy; 2026 Construction. All rights reserved.
+    </div>
+   </div>
+  </footer>
+ </body>
+</html>
